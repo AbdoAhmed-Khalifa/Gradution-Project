@@ -10,28 +10,26 @@ const initialState = {
 
 export const fetchUser = createAsyncThunk(
     "User/UserData",
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const userUid = sessionStorage.getItem("UserUid");
             if (!userUid) {
-                throw new Error("User UID not found in session storage");
+                return rejectWithValue("No user UID in session storage");
             }
 
             const userRef = doc(db, "Users", userUid);
             const userSnap = await getDoc(userRef);
 
-            if (userSnap.exists) {
+            if (userSnap.exists()) {
                 return userSnap.data();
             } else {
-                throw new Error("User not found in Firestore");
+                return rejectWithValue("User not found in Firestore");
             }
         } catch (error) {
-            // console.error("Error fetching user data:", error);
-            // return Promise.reject(error);
+            return rejectWithValue(error.message || "An error occurred while fetching user data");
         }
     }
 );
-
 const userSlice = createSlice({
     name: "User",
     initialState,
