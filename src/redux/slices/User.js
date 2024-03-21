@@ -26,8 +26,8 @@ export const fetchUser = createAsyncThunk(
                 throw new Error("User not found in Firestore");
             }
         } catch (error) {
-            console.error("Error fetching user data:", error);
-            return Promise.reject(error);
+            // console.error("Error fetching user data:", error);
+            // return Promise.reject(error);
         }
     }
 );
