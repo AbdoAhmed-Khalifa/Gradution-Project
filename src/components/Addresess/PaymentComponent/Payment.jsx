@@ -11,12 +11,12 @@ export default function Payment() {
 
 
   return (
-    <div className="w-2/4">
+    <div className="w-2/4 ">
       <h1 className="mb-5 text-xl font-medium text-gray-900 dark:text-white">
         2 - Payment Methods
       </h1>
 
-      <section className="flex flex-col items-center justify-center w-full border-2 rounded-md">
+      <section className="flex flex-col items-center justify-center w-full border-2 rounded-md ">
         <div className="border-0.5 border-black p-4 mb-4 rounded-lg w-full">
           {/* Header with aligned titles */}
           <article className="flex flex-wrap justify-between">

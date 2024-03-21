@@ -2,7 +2,7 @@ import React from 'react';
 
 function NeedHelp({ working, toggleWorking }) {
     return (
-        <div>
+        <div >
             <p className='NeedHelpLinks' onClick={toggleWorking}>Need Help?</p>
             {working &&
                 <div>

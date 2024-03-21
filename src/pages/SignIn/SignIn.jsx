@@ -46,7 +46,7 @@ export default function SignIn() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <section className="flex flex-col items-center">
+        <section className="flex flex-col items-center ">
           {/* Amazon Logo */}
           <img src="amazon-icon/Amazon_logo_dark.webp" className="mt-5 w-28" alt="Amazon Logo" />
 

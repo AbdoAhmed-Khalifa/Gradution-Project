@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Drawer, Button, Accordion, ButtonToolbar } from 'rsuite';
 import { FaBars } from 'react-icons/fa';
+
 
 import 'rsuite/Drawer/styles/index.css';
 import 'rsuite/Button/styles/index.css';
@@ -9,8 +10,12 @@ import 'rsuite/Accordion/styles/index.css';
 import 'rsuite/Animation/styles/index.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import SwitchDark from '../Switch/SwitchDark';
+import { DarkModeContext } from '../../contexts/DarkMode';
 
 export default function CustomDrawer() {
+
+  const { darkMode, setDarkMode } = useContext(DarkModeContext)
   const UserName = useSelector(state => state.User.user?.UserName);
 
   const [size, setSize] = useState();
@@ -89,19 +94,19 @@ export default function CustomDrawer() {
           <Drawer.Title className="text-white">Hello {UserName}</Drawer.Title>
         </Drawer.Header>
 
-        <Drawer.Body>
+        <Drawer.Body className='text-white dark:bg-[#15141c]'>
           {sections.map((section, index) => (
             <div key={index}>
-              <h1 className="text-xl font-semibold">{section.title}</h1>
+              <h1 className="text-xl font-semibold text-black dark:text-white">{section.title}</h1>
               {section.links.map((link, linkIndex) => (
                 <div
                   key={linkIndex}
-                  className="w-full p-1 rounded-md hover:bg-[#eaeded]"
+                  className="w-full p-1 rounded-md hover:bg-[#eaeded] dark:hover:bg-[#352e63]"
                 >
-                  <h3 className="font-semibold">
+                  <h3 className="font-semibold dark:text-white">
                     <Link
                       to={link.to}
-                      className="block w-full ml-2 text-[#5a5b5b] no-underline hover:no-underline"
+                      className="block w-full ml-2 text-[#3b3b3b] no-underline hover:no-underline dark:text-white"
                       onClick={handleClose}
                     >
                       {link.text}
@@ -113,21 +118,25 @@ export default function CustomDrawer() {
             </div>
           ))}
           <hr />
+          <div className="flex items-center justify-between w-full p-1">
+            <h1 className="text-xl font-semibold">Dark Mode {darkMode === 'dark' ? 'light' : 'dark'}</h1>
+            <SwitchDark />
+          </div>
 
-          <Accordion>
-            <Accordion.Panel
+          <Accordion className='dark:text-white' >
+            <Accordion.Panel className='font-semibold dark:text-white'
               header={seeAll ? 'See Less' : 'See All'}
               onClick={() => setSeeAll(!seeAll)}
             >
               {accordSection[0].links.map((link, linkIndex) => (
                 <div
                   key={linkIndex}
-                  className="w-full p-1 rounded-md hover:bg-[#eaeded]"
+                  className="w-full p-1 rounded-md hover:bg-[#eaeded] dark:bg-[#15141c] dark:hover:bg-[#352e63]"
                 >
-                  <h3 className="font-semibold">
+                  <h3 className="font-semibold dark:text-white">
                     <Link
                       to={link.to}
-                      className="block w-full ml-2 text-blue-500 no-underline hover:no-underline"
+                      className="block w-full ml-2 text-[#3b3b3b] no-underline hover:no-underline dark:text-white"
                       onClick={handleClose}
                     >
                       {link.text}
@@ -138,13 +147,13 @@ export default function CustomDrawer() {
             </Accordion.Panel>
           </Accordion>
 
-          <Accordion>
-            <Accordion.Panel header="Help & Settings">
-              <div className="w-full p-1 rounded-md hover:bg-[#eaeded]">
+          <Accordion >
+            <Accordion.Panel header="Help & Settings" className='font-semibold text-white'>
+              <div className="w-full p-1 rounded-md hover:bg-[#eaeded] dark:hover:bg-[#352e63]">
                 <h3 className="font-semibold">
                   <Link
                     to="/profile"
-                    className="block w-full ml-2 text-blue-500 no-underline hover:no-underline"
+                    className="block w-full ml-2 text-[#3b3b3b] no-underline hover:no-underline dark:text-white "
                     onClick={handleClose}
                   >
                     Your Account
@@ -162,22 +171,22 @@ export default function CustomDrawer() {
                   AR
                 </option>
               </select>
-              <div className="w-full p-1 rounded-md hover:bg-[#eaeded]">
+              <div className="w-full p-1 rounded-md hover:bg-[#eaeded] dark:hover:bg-[#352e63] ">
                 <h3 className="font-semibold">
                   <Link
                     to="/Help"
-                    className="block w-full text-blue-500 no-underline hover:no-underline"
+                    className="block w-full text-[#3b3b3b] no-underline hover:no-underline dark:text-white"
                     onClick={handleClose}
                   >
                     Help
                   </Link>
                 </h3>
               </div>
-              <div className="w-full p-1 rounded-md hover:bg-[#eaeded]">
+              <div className="w-full p-1 rounded-md hover:bg-[#eaeded] dark:hover:bg-[#352e63]  ">
                 <h3 className="font-semibold">
                   <Link
                     to="/SighOut"
-                    className="block w-full ml-2 text-blue-500 no-underline hover:no-underline"
+                    className="block w-full ml-2 text-[#3b3b3b] no-underline hover:no-underline dark:text-white"
                     onClick={handleClose}
                   >
                     Sigh Out

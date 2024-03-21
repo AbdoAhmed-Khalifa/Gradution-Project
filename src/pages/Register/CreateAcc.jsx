@@ -64,7 +64,7 @@ export default function Register() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} >
         <section className="flex flex-col items-center ">
           {/* Amazon Logo */}
           <img

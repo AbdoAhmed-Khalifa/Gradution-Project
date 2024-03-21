@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: [#15141c];
+    --text-clr: white;
+  }
+}
+/* bgColor For dark #15141c  */
+/* bgColor For dark in the Card #322e3f  */
+/* bgColor for dark for small font is text-gray-300  */
 .Links {
   @apply text-blue-700 hover:text-[#c95531] hover:underline;
 }
@@ -13,7 +22,7 @@
 }
 
 .btn {
-  @apply rounded-md bg-yellow-400 text-black my-4 hover:bg-yellow-500 duration-200 w-full;
+  @apply w-full my-4 text-black duration-200 bg-yellow-400 rounded-md hover:bg-yellow-500;
 }
 
 .ModalInput {
@@ -22,7 +31,7 @@
 
 @layer base {
   button {
-    @apply border border-black rounded-xl px-5 py-1;
+    @apply px-5 py-1 border border-black rounded-xl;
   }
 }
 
