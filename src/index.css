@@ -4,15 +4,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global transition effect */
+* {
+  transition: color 1s, background-color 1s, opacity 1s;
+}
+
+/* Corrected CSS variable syntax and added a comment for clarity */
+/* Background color for dark mode */
+/* Card background color in dark mode: #322e3f */
+/* Text color for small font in dark mode: text-gray-300 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: [#15141c];
+    --bg: #15141c;
+    /* Removed square brackets */
     --text-clr: white;
   }
 }
-/* bgColor For dark #15141c  */
-/* bgColor For dark in the Card #322e3f  */
-/* bgColor for dark for small font is text-gray-300  */
+
+@layer base {
+
+  /* Scrollbar customization */
+  ::-webkit-scrollbar {
+    @apply w-2.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-500;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-pink-200 dark:bg-violet-600 rounded-xl;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#222f3d];
+  }
+
+  /* Button base style */
+  button {
+    @apply px-5 py-1 border border-black rounded-xl;
+  }
+}
+
+/* Link styles */
 .Links {
   @apply text-blue-700 hover:text-[#c95531] hover:underline;
 }
@@ -21,24 +55,18 @@
   @apply text-blue-700 hover:text-[#c95531] hover:underline block mt-2;
 }
 
+/* Button style */
 .btn {
   @apply w-full my-4 text-black duration-200 bg-yellow-400 rounded-md hover:bg-yellow-500;
 }
 
+/* Modal input style */
 .ModalInput {
-  @apply shadow-md bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600  dark:text-white ;
+  @apply shadow-md bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white;
 }
 
-@layer base {
-  button {
-    @apply px-5 py-1 border border-black rounded-xl;
-  }
-}
-
-.react-rater-star.is-active-half:before {
-  color: var(--gold) !important;
-}
-
+/* Custom star ratings */
+.react-rater-star.is-active-half:before,
 .react-rater-star.is-active {
   color: var(--gold) !important;
 }

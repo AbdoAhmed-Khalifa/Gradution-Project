@@ -32,6 +32,7 @@ import NotFound from './pages/Not-Found/NotFound';
 import { AllProductsProvider } from './contexts/allProducts';
 import { getAllProducts } from './firestore/firestore';
 import { DarkModeProvider } from './contexts/DarkMode';
+import ProductNavList from './pages/ProductNavList/ProductNavList';
 
 const router = createBrowserRouter([
   {
@@ -63,8 +64,11 @@ const router = createBrowserRouter([
       },
       { path: '/watches', element: <Watches />, loader: watchesLoader },
       { path: '/search', element: <SearchResults /> },
+
     ],
+
   },
+  {path:'/product-list',element:<ProductNavList/>},
   {
     path: '/checkout',
     element: <CheckoutPage />,
