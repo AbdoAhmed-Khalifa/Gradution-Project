@@ -1,34 +1,8 @@
+import Routing from './Routing';
 import { LangProvider } from './contexts/lang';
-import { useEffect, useState } from 'react';
-import Home from './pages/Home/Home';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import AppLayout from './pages/AppLayout/AppLayout';
-import './App.css';
-import Cart from './pages/Cart/Cart';
-import ProductDestails, {
-  loader as ProductLoader,
-} from './pages/ProductDetails/ProductDestails';
-import Electronics, {
-  loader as electronicsLoader,
-} from './pages/Categories/Electronics';
-import Kindle, { loader as kindleLoader } from './pages/Categories/Kindle';
-import OfficeSupplies, {
-  loader as officeSuppliesLoader,
-} from './pages/Categories/OfficeSupplies';
-import PersonalCare, {
-  loader as personalCareLoader,
-} from './pages/Categories/PersonalCare';
-import Coffee, { loader as coffeeLoader } from './pages/Categories/Coffee';
-import Watches, { loader as watchesLoader } from './pages/Categories/Watches';
-import SignIn from './pages/SignIn/SignIn';
-import Register from './pages/Register/CreateAcc';
-import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-
 import { CartItemsCountProvider } from './contexts/cartItemsCount';
-import SearchResults from './pages/SearchResults/SearchResults';
-import NotFound from './pages/Not-Found/NotFound';
 import { AllProductsProvider } from './contexts/allProducts';
 import { getAllProducts } from './firestore/firestore';
 import { DarkModeProvider } from './contexts/DarkMode';
@@ -89,7 +63,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default function App() {
+import { useEffect, useState } from 'react';
+function App() {
   const [lang, setLang] = useState('en');
   const [nums, setNums] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
@@ -117,7 +92,7 @@ export default function App() {
       <AllProductsProvider value={{ allProducts }}>
         <LangProvider value={{ lang, setLang }}>
           <CartItemsCountProvider value={{ nums, setNums }}>
-            <RouterProvider router={router} />
+            <Routing />
           </CartItemsCountProvider>
         </LangProvider>
       </AllProductsProvider>
@@ -125,3 +100,5 @@ export default function App() {
     </Provider>
   );
 }
+
+export default App;
