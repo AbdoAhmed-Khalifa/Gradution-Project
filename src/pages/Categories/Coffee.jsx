@@ -1,11 +1,21 @@
 import { useLoaderData } from 'react-router-dom';
-import {
-  getCategoryByName,
-  getProductsByCategoryId,
-} from '../../firestore/firestore';
+import { getProductsByCategoryId } from '../../firestore/firestore';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import { useState } from 'react';
 import { FilterSidebar } from './FilterSidebar';
+import ServiceUnavailable from '../Service-Unavailable/ServiceUnavailable';
+
+const categories = [{ view: 'Coffee', value: '6552824aa8299445e5fe5e9b' }];
+const brands = [
+  { view: 'Abu Auf', value: 'Abu Auf' },
+  { view: 'Farouk Pasha', value: 'Farouk Pasha' },
+];
+const priceRanges = [
+  { view: 'Up to 50 USD', value: 0 },
+  { view: '51 to 100 USD', value: 50 },
+  { view: '101 to 150 USD', value: 100 },
+  { view: '151 USD & above', value: 150 },
+];
 
 function Coffee() {
   const products = useLoaderData();
@@ -38,22 +48,28 @@ function Coffee() {
       (filters.brand ? product.brand === filters.brand : true)
     );
   });
-  return (
-    <div className="flex">
-      <div className="w-[20%]">
-        <FilterSidebar onFilterChange={handleFilterChange} />
+  if (products.length === 0) return <ServiceUnavailable />;
+  else
+    return (
+      <div className="flex ">
+        <div className="w-[20%] min-w-44">
+          <FilterSidebar
+            onFilterChange={handleFilterChange}
+            priceRanges={priceRanges}
+            brands={brands}
+            categories={categories}
+          />
+        </div>
+        <div className="w-[80%]">
+          <ProductsList products={filteredProducts} title="Coffee" />
+        </div>
       </div>
-      <div className="w-[80%]">
-        <ProductsList products={filteredProducts} title="Coffee" />
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Coffee;
 
 export async function loader() {
-  const category = await getCategoryByName('Coffee');
-  const products = await getProductsByCategoryId(category.id);
+  const products = await getProductsByCategoryId('65527c22376a52ea210d9708');
   return products;
 }

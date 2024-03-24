@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Drawer, Button, Accordion, ButtonToolbar } from 'rsuite';
 import { FaBars } from 'react-icons/fa';
 
-
 import 'rsuite/Drawer/styles/index.css';
 import 'rsuite/Button/styles/index.css';
 import 'rsuite/Accordion/styles/index.css';
@@ -10,14 +9,11 @@ import 'rsuite/Accordion/styles/index.css';
 import 'rsuite/Animation/styles/index.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import SwitchDark from '../Switch/SwitchDark';
-import { DarkModeContext } from '../../contexts/DarkMode';
 
 export default function CustomDrawer() {
-
-  const { darkMode, setDarkMode } = useContext(DarkModeContext)
   const UserName = useSelector(state => state.User.user?.UserName);
-
+  const dispatch = useDispatch();
+  const User = sessionStorage.getItem('UserUid');
   const [size, setSize] = useState();
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState('left');
@@ -171,22 +167,22 @@ export default function CustomDrawer() {
                   AR
                 </option>
               </select>
-              <div className="w-full p-1 rounded-md hover:bg-[#eaeded] dark:hover:bg-[#352e63] ">
+              <div className="w-full p-1 rounded-md hover:bg-[#eaeded]">
                 <h3 className="font-semibold">
                   <Link
                     to="/Help"
-                    className="block w-full text-[#3b3b3b] no-underline hover:no-underline dark:text-white"
+                    className="block w-full text-blue-500 no-underline hover:no-underline"
                     onClick={handleClose}
                   >
                     Help
                   </Link>
                 </h3>
               </div>
-              <div className="w-full p-1 rounded-md hover:bg-[#eaeded] dark:hover:bg-[#352e63]  ">
+              <div className="w-full p-1 rounded-md hover:bg-[#eaeded]">
                 <h3 className="font-semibold">
                   <Link
                     to="/SighOut"
-                    className="block w-full ml-2 text-[#3b3b3b] no-underline hover:no-underline dark:text-white"
+                    className="block w-full ml-2 text-blue-500 no-underline hover:no-underline"
                     onClick={handleClose}
                   >
                     Sigh Out
