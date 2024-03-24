@@ -30,13 +30,21 @@ export default function SignIn() {
           data.Password
         );
         toast.success('Sign In Successful');
-        navigate('/');
-        // console.log(userCredential.user.uid);
-
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+       
         sessionStorage.setItem('UserUid', userCredential.user.uid);
       } catch (error) {
         if (error.code) {
-          const errorMessage = handleFirebaseError(error.code);
+          let errorMessage;
+          switch (error.code) {
+            case 'auth/user-not-found':
+              errorMessage = 'No user found with this email or phone number.';
+              break;
+            default:
+              errorMessage = handleFirebaseError(error.code);
+          }
           toast.error(errorMessage);
         } else {
           toast.error('An error occurred. Please try again later.');
@@ -44,6 +52,22 @@ export default function SignIn() {
       }
     }
   };
+
+  function handleFirebaseError(errorCode) {
+    switch (errorCode) {
+      case 'auth/weak-password':
+        return 'Password is too weak. Please choose a stronger password.';
+      case 'auth/email-already-in-use':
+        return 'The email address is already in use by another account.';
+      case 'auth/invalid-email':
+        return 'Invalid Email';
+      case 'auth/user-not-found':
+        return 'Invalid Email';
+      default:
+        return 'An unknown error occurred.';
+    }
+  }
+
 
   return (
     <>

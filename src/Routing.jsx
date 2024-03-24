@@ -27,6 +27,14 @@ import Register from './pages/Register/CreateAcc';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import SearchResults from './pages/SearchResults/SearchResults';
 import NotFound from './pages/Not-Found/NotFound';
+import ProductNavList from './pages/ProductNavList/ProductNavList';
+import BestSellers from './pages/ProductNavList/pages/BestSellers';
+import TVs from './pages/ProductNavList/pages/TVs';
+import MobileAccessories from './pages/ProductNavList/pages/MobileAccessories';
+import CamerasAccessories from './pages/ProductNavList/pages/CamerasAccessories';
+import ComputerAccessories from './pages/ProductNavList/pages/ComputerAccessories';
+import Headphones from './pages/ProductNavList/pages/Headphones';
+
 import { useSelector } from 'react-redux';
 const router = createBrowserRouter([
   {
@@ -58,6 +66,20 @@ const router = createBrowserRouter([
       },
       { path: '/watches', element: <Watches />, loader: watchesLoader },
       { path: '/search', element: <SearchResults /> },
+      {
+        path: '/product-list',
+        element: <ProductNavList />,
+        children: [
+          { path: 'watches', element: <Watches />, loader: watchesLoader },
+          { path: 'best-sellers', element: <BestSellers /> },
+          { path: 'electronics', element: <Electronics /> },
+          { path: 'mobiles-accessories', element: <MobileAccessories /> },
+          { path: 'computer-accessories', element: <ComputerAccessories /> },
+          { path: 'tvs', element: <TVs /> },
+          { path: 'cameras-accessories', element: <CamerasAccessories /> },
+          { path: 'headphones', element: <Headphones /> },
+        ],
+      },
     ],
   },
   {

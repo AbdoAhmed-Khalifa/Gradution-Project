@@ -75,7 +75,7 @@ export default function CustomDrawer() {
     <>
       <ButtonToolbar>
         <Button
-          className=" text-white p-1 text-base bg-transparent border-none outline-none focus:outline-none focus:bg-transparent hover:bg-transparent"
+          className="p-1 text-base text-white bg-transparent border-none outline-none focus:outline-none focus:bg-transparent hover:bg-transparent"
           size="xs"
           onClick={() => handleOpen('xs')}
         >
@@ -148,7 +148,7 @@ export default function CustomDrawer() {
           </Accordion>
 
           <Accordion >
-            <Accordion.Panel header="Help & Settings" className='font-semibold text-white'>
+            <Accordion.Panel header="Help & Settings" className='font-semibold text-white dark:text-white'>
               <div className="w-full p-1 rounded-md hover:bg-[#eaeded] dark:hover:bg-[#352e63]">
                 <h3 className="font-semibold">
                   <Link

@@ -6,17 +6,17 @@
 
 /* Global transition effect */
 * {
-  transition: color 1s, background-color 1s, opacity 1s;
+  transition: background-color 1s;
 }
 
 /* Corrected CSS variable syntax and added a comment for clarity */
-/* Background color for dark mode */
+/* Background color for dark mode :#15141c*/
 /* Card background color in dark mode: #322e3f */
 /* Text color for small font in dark mode: text-gray-300 */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #15141c;
-    /* Removed square brackets */
+   
     --text-clr: white;
   }
 }
@@ -65,6 +65,9 @@
   @apply shadow-md bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white;
 }
 
+.Heading{
+  @apply font-bold text-4xl 
+}
 /* Custom star ratings */
 .react-rater-star.is-active-half:before,
 .react-rater-star.is-active {

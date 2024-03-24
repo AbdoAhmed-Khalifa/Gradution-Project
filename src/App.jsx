@@ -6,62 +6,8 @@ import { CartItemsCountProvider } from './contexts/cartItemsCount';
 import { AllProductsProvider } from './contexts/allProducts';
 import { getAllProducts } from './firestore/firestore';
 import { DarkModeProvider } from './contexts/DarkMode';
-import ProductNavList from './pages/ProductNavList/ProductNavList';
 
-const router = createBrowserRouter([
-  {
-    element: <AppLayout />,
-    children: [
-      { path: '/', element: <Home /> },
-      { path: '/cart', element: <Cart /> },
-      {
-        path: '/product/:id',
-        element: <ProductDestails />,
-        loader: ProductLoader,
-      },
-      {
-        path: '/electronics',
-        element: <Electronics />,
-        loader: electronicsLoader,
-      },
-      { path: '/coffee', element: <Coffee />, loader: coffeeLoader },
-      { path: '/kindle', element: <Kindle />, loader: kindleLoader },
-      {
-        path: '/office-supplies',
-        element: <OfficeSupplies />,
-        loader: officeSuppliesLoader,
-      },
-      {
-        path: '/personal-care',
-        element: <PersonalCare />,
-        loader: personalCareLoader,
-      },
-      { path: '/watches', element: <Watches />, loader: watchesLoader },
-      { path: '/search', element: <SearchResults /> },
 
-    ],
-
-  },
-  {path:'/product-list',element:<ProductNavList/>},
-  {
-    path: '/checkout',
-    element: <CheckoutPage />,
-  },
-  ,
-  {
-    path: '/login',
-    element: <SignIn />,
-  },
-  ,
-  {
-    path: '/register',
-    element: <Register />,
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-]);
 
 import { useEffect, useState } from 'react';
 function App() {
